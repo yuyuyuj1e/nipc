@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>国家计算机网络入侵防范中心</title>
+
+    <!-- base css -->
+    <link rel="shortcut icon" href="/static/img/nipc_logo_trans.png"/>
+    <link rel="stylesheet" href="../static/plugins/icommon/style.css">
+    <link rel="stylesheet" href="/static/plugins/moban5914/static/css/animate.css">
+    <link rel="stylesheet" href="/static/plugins/moban5914/static/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/static/plugins/moban5914/static/css/style.css">
+    <link rel="stylesheet" href="/static/plugins/bootstrap-4.6.1-dist/css/bootstrap.min.css">
+    <!-- End base css -->
+
+    {% block css %}
+    {% endblock %}
+</head>
+<body>
+<!-- nav -->
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light" id="ftco-navbar" style="position: absolute">
+    <div class="container">
+        <a class="navbar-brand" href="">国家计算机网络入侵防范中心</a>
+        <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+                {#                    {% block nav %}#}
+                {#                    {% endblock %}#}
+                <li id="nav-home" class="nav-item"><a href="/" class="nav-link">首页</a></li>
+                <li id="nav-vulnerability" class="nav-item"><a href="/vulnerability/" class="nav-link">漏洞列表</a></li>
+                <li id="nav-report" class="nav-item"><a href="/report/" class="nav-link">漏洞报告</a></li>
+                <li id="nav-statistic" class="nav-item"><a href="/statistic/" class="nav-link">数据统计</a></li>
+                <li id="nav-custom" class="nav-item"><a href="/custom/" class="nav-link">数据定制</a></li>
+                <li id="nav-about" class="nav-item"><a href="/about/" class="nav-link">关于我们</a></li>
+{#                <li id="nav-login" class="nav-item cta"><a href="#" class="nav-link"><span>登录</span></a></li>#}
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- END nav -->
+
+<div>
+    {% block content %}
+    {% endblock %}
+</div>
+
+
+<!-- footer -->
+<footer class="ftco-footer ftco-bg-dark ftco-section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">关于我们</h2>
+                    <p class="ftco-animate">
+                        国家计算机网络入侵防范中心以保护我国网络空间安全为综旨，主要从事黑客防范技术的研究，是国家计算机网络应急处理体系中心的重要部门。
+                    </p>
+                    <ul class="ftco-footer-social list-unstyled mb-0">
+                        <li class="ftco-animate"><a href="#"><span class="icon-qq"></span></a></li>
+                        <li class="ftco-animate"><a href="#"><span class="icon-wechat"></span></a></li>
+                        <li class="ftco-animate"><a href="#"><span class="icon-sina-weibo"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4 ml-md-5">
+                    <h2 class="ftco-heading-2">友情连接</h2>
+                    <ul class="list-unstyled">
+                        <li class="ftco-animate"><a href="https://www.cas.cn/" class="py-2 d-block">中国科学院</a></li>
+                        <li class="ftco-animate"><a href="https://www.ucas.ac.cn/" class="py-2 d-block">中国科学院大学</a></li>
+                        <li class="ftco-animate"><a href="https://www.casdc.cn/" class="py-2 d-block">科学数据中心</a></li>
+                        <li class="ftco-animate"><a href="https://www.cert.org.cn/" class="py-2 d-block">国家互联网应急中心</a>
+                        </li>
+                        <li class="ftco-animate"><a href="http://www.itsec.gov.cn/" class="py-2 d-block">中国信息安全测评中心</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">导航</h2>
+                    <ul class="list-unstyled">
+                        <li class="ftco-animate"><a href="#" class="py-2 d-block">首页</a></li>
+                        <li class="ftco-animate"><a href="#" class="py-2 d-block">漏洞列表</a></li>
+                        <li class="ftco-animate"><a href="#" class="py-2 d-block">漏洞报告</a></li>
+                        <li class="ftco-animate"><a href="#" class="py-2 d-block">数据统计</a></li>
+                        <li class="ftco-animate"><a href="#" class="py-2 d-block">数据定制</a></li>
+                        <li class="ftco-animate"><a href="#" class="py-2 d-block">关于我们</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">联系方式</h2>
+                    <div class="block-23 mb-3">
+                        <ul>
+                            <li class="ftco-animate">
+                                <span class="icon icon-location"></span>
+                                <span class="text">北京市怀柔区中国科学院大学雁栖湖校区，学院二426</span>
+                            </li>
+                            <li class="ftco-animate">
+                                <span class="icon icon-phone1"></span>
+                                <span class="text">010-88256218</span>
+                            </li>
+                            <li class="ftco-animate">
+                                <span class="icon icon-envelope"></span>
+                                <span class="text">nipc@nipc.org.cn</span>
+                            </li>
+                            <li class="ftco-animate">
+                                <span class="icon icon-home1"></span>
+                                <span class="text">100048</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <p>
+                    COPYRIGHT National Computer Network Instrusion Protection Center. All right reserved
+                    <br>
+                    国家计算机网络入侵防范中心版权所有
+                    <br>
+                    本数据库由“中国科学院十三五信息化专项科学大数据工程项目”提供支持
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End footer -->
+
+
+<!-- loader -->
+<div id="ftco-loader" class="show fullscreen">
+    <svg class="circular" width="48px" height="48px">
+        <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"></circle>
+        <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00"></circle>
+    </svg>
+</div>
+
+
+<script src="/static/plugins/moban5914/static/js/jquery.min.js"></script>
+<script src="/static/plugins/moban5914/static/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="/static/plugins/moban5914/static/js/jquery.waypoints.min.js"></script>
+<script src="/static/plugins/moban5914/static/js/jquery.stellar.min.js"></script>
+<script src="/static/plugins/moban5914/static/js/owl.carousel.min.js"></script>
+<script src="/static/plugins/moban5914/static/js/aos.js"></script>
+<script src="/static/plugins/moban5914/static/js/jquery.animateNumber.min.js"></script>
+<script src="/static/plugins/moban5914/static/js/scrollax.min.js"></script>
+<script src="/static/plugins/moban5914/static/js/main.js"></script>
+<script src="/static/plugins/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<script src="/static/plugins/bootstrap-4.6.1-dist/js/bootstrap.bundle.js"></script>
+<script>
+    // 让选中的项高亮
+    function setActiveNavItem() {
+        // Get the current path
+        var path = window.location.pathname;
+
+        // Remove the trailing slash (if present)
+        if (path.endsWith('/')) {
+            path = path.slice(0, -1);
+        }
+
+        // Get the corresponding nav item based on the path
+        var navItem = document.getElementById('nav-' + path.slice(1));
+
+        // Add the active class to the nav item
+        navItem.classList.add('active');
+    }
+
+    // Call the function when the page loads
+    setActiveNavItem();
+
+    // Add an event listener to update the active nav item when a link is clicked
+    var navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    navLinks.forEach(function (link) {
+        link.addEventListener('click', setActiveNavItem);
+    });
+
+</script>
+
+{% block js %}
+{% endblock %}
+
+</body>
+</html>

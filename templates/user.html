@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>国家计算机网络入侵防范中心</title>
+
+    <!-- 网页图标 -->
+    <link rel="shortcut icon" href="/static/img/nipc_logo_trans.png" />
+
+
+    <!-- base css -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/plugins/bootstrap-4.6.1-dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../static/plugins/icommon/style.css">
+    <!-- End base css -->
+
+    <!-- base js -->
+    <!-- <script src="/static/plugins/skydash-admin/template/vendors/js/vendor.bundle.base.js"></script> -->
+    <script src="/static/plugins/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+    <script src="/static/plugins/bootstrap-4.6.1-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/template.js"></script>
+    <script src="/static/js/hoverable-collapse.js"></script>
+    <!-- End base js -->
+
+
+</head>
+<body>
+
+<!-- body -->
+<div class="container-scroller">
+    <!-- navbar -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <!-- navbar logo -->
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center" >
+            <a class="navbar-brand brand-logo" href="/">
+                <img src="/static/img/nipc_name_trans.png" alt="logo" style="height: 40px"/>
+            </a>
+            <a class="navbar-brand brand-logo-mini" href="/">
+                <img src="/static/img/nipc_logo.png" alt="logo" style="height: 40px"/>
+            </a>
+        </div> <!-- End navbar logo -->
+
+        <!-- navbar right -->
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+            <!-- 切换按钮 -->
+            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                <span class="icon-navicon"></span>
+            </button>
+            <!-- End 切换按钮 -->
+
+            <!-- 搜索 -->
+            <ul class="navbar-nav mr-lg-2">
+                <li class="nav-item nav-search d-none d-lg-block">
+                    <div class="input-group">
+                        <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                            <span class="input-group-text" id="search">
+                                <i class="icon-search"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" id="navbar-search-input"
+                               placeholder="Search now" aria-label="search" aria-describedby="search"
+                               style="width: 500px;">
+                    </div>
+                </li>
+            </ul>
+            <!-- End 搜索 -->
+
+            <!-- 用户 -->
+            <ul class="navbar-nav navbar-nav-right">
+                <li class="nav-item dropdown">
+                    <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="/" data-toggle="dropdown">
+                        <i class="icon-bell-o mx-0"></i>
+                        <span class="count"></span>
+                    </a>
+                </li>
+
+                <!-- 头像 -->
+                <li class="nav-item nav-profile dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                        <img src="../static/img/nipc_logo_trans.png" alt="profile"/>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                        <a class="dropdown-item">
+                            <i class="ti-settings text-primary"></i>
+                            用户设置
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="ti-power-off text-primary"></i>
+                            退出
+                        </a>
+                    </div>
+                </li>
+                <!-- End 头像 -->
+            </ul>
+            <!-- End 用户 -->
+        </div>
+        <!-- End navbar right -->
+    </nav>
+    <!-- End navbar -->
+
+    <!-- bottom -->
+    <div class="container-fluid page-body-wrapper" style="padding-left: 0; padding-right: 0">
+        <!-- 左侧 navbar -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar" style="position: fixed; box-shadow: 3px 20px 20px 5px #e3e7f2;">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">
+                        <i class="icon-home3 menu-icon"></i>
+                        <span class="menu-title">首页</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#vulnerability-list"  data-toggle="collapse" aria-expanded="false" aria-controls="ui-basic">
+                        <i class="icon-upload1 menu-icon"></i>
+                        <span class="menu-title">提交漏洞</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="vulnerability-list">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link" href="#">提交漏洞</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">草稿箱</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#vulnerability-report"  data-toggle="collapse" aria-expanded="false" aria-controls="ui-basic">
+                        <i class="icon-heart menu-icon"></i>
+                        <span class="menu-title">我的漏洞</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="vulnerability-report">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link" href="#">我的漏洞</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about-us" data-toggle="collapse" aria-expanded="false" aria-controls="ui-basic">
+                        <i class="icon-user menu-icon"></i>
+                        <span class="menu-title">个人中心</span>
+                        <i class="icon-user menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="about-us">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link" href="#">个人资料</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav> <!-- 左侧 navbar -->
+
+        <div class="main-panel main-panel-icon-fixed" style="width: calc(100% - 0px);">
+            <!-- 展示区域 -->
+            <div class="content-wrapper">
+                <div>
+            <div>1</div>
+                    <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+
+        </div>
+            </div>
+            <!-- End 展示区域 -->
+
+             <!-- footer -->
+            <footer class="footer">
+                <div class="col text-center align-middle" style="font-size: 14px;color: #a9a9a9;">
+                    COPYRIGHT National Computer Network Instrusion Protection Center. All right reserved
+                    <br>
+                    国家计算机网络入侵防范中心版权所有
+                    <br>
+                    本数据库由“中国科学院十三五信息化专项科学大数据工程项目”提供支持
+                </div>
+            </footer>
+            <!-- footer -->
+
+        </div>
+
+    </div>
+    <!-- End bottom -->
+
+</div>
+<!-- End body -->
+
+</body>
+</html>

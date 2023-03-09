@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{#{% load static %}#}
+
+{% block content %}
+{#    <div class="hero-wrap hero-wrap-2" style="background-image: {% static 'img/UCAS.png' %};"#}
+    <div class="hero-wrap hero-wrap-2" style="background-image: url(/static/img/UCAS.png);"
+         data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center">
+                <div class="col-md-8 ftco-animate text-center text-center mt-5">
+                    <p class="breadcrumbs mb-0">
+                    <span class="mr-3">
+                        <a href="/">首页<i class="icon-arrows-h"></i></a>
+                    </span>
+                        <span>
+                        {% block name1 %}
+                        {% endblock %}
+                    </span>
+                    </p>
+                    <h1 class="mb-3 bread">
+                        {% block name2 %}
+                        {% endblock %}
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block other_content %}
+    {% endblock %}
+{% endblock %}
+
+{% block js %}
+{% endblock %}
