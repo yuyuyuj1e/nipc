@@ -110,24 +110,6 @@
             </div>
         </div>
     </section>
-
-    <script type="text/javascript">
-        var init = function() {
-            var center = new qq.maps.LatLng(31.202842,121.402611);
-            var map = new qq.maps.Map(document.getElementById('container'),{
-                center: center,
-                zoom: 19
-            });
-            var infoWin = new qq.maps.InfoWindow({
-                map: map
-            });
-            infoWin.open();
-            //tips  自定义内容
-            infoWin.setContent('<div style="width:170px; padding-right:10px">'+
-                    '宁圣农业供应链集团有限公司 </div>');
-            infoWin.setPosition(center);
-        }
-	</script>
 {% endblock %}
 
 {% block name1 %}
