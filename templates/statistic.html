@@ -1,13 +1,309 @@
 {% extends 'other_base.html' %}
+{% load static %}
 
-{% block nav %}
-{#    <li class="nav-item"><a href="/" class="nav-link">首页</a></li>#}
-{#    <li class="nav-item"><a href="/vulnerability" class="nav-link">漏洞列表</a></li>#}
-{#    <li class="nav-item"><a href="/report" class="nav-link">漏洞报告</a></li>#}
-{#    <li class="nav-item active"><a href="/statistic" class="nav-link">数据统计</a></li>#}
-{#    <li class="nav-item"><a href="/custom" class="nav-link">数据定制</a></li>#}
-{#    <li class="nav-item"><a href="/about" class="nav-link">关于我们</a></li>#}
-{#    <li class="nav-item cta"><a href="#" class="nav-link"><span>登录</span></a></li>#}
+{% block css %}
+    <style>
+        #volume, #year {
+          position: relative;
+          height: 70vh;
+          overflow: hidden;
+        }
+        .chart {
+            box-shadow: 5px 5px 5px #999999;
+        }
+        .card-header {
+            background-color: white;
+            font-weight: bold;
+            font-size: 25px;
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+
+{% block other_content %}
+    <div style="background-color: #f2f2f3">
+        <div class="container">
+            <div class="row" style="padding-top: 100px; padding-bottom: 50px;">
+                <div class="col-12">
+                    <div class="card chart">
+                        <div class="card-header">
+                            近20年漏洞增长趋势
+                        </div>
+                        <div class="card-body">
+                            <div id="year"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="padding-top: 50px; padding-bottom: 50px;">
+                <div class="col-12 volume">
+                    <div class="card chart">
+                        <div class="card-header">
+                            近1年漏洞增长详情
+                        </div>
+                        <div class="card-body">
+                            <div id="volume"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-12 col-lg-6" style="padding-top: 50px; padding-bottom: 50px;">
+                    <div class="card chart">
+                        <div class="card-header">
+                            危险等级分布
+                        </div>
+                        <div class="card-body">
+                            <div id="distribution"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-12 col-lg-6" style="padding-top: 50px; padding-bottom: 100px;">
+                    <div class="card chart">
+                        <div class="card-header">
+                            类型分布
+                        </div>
+                        <div class="card-body">
+                            <div id="type"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="/static/js/echarts.common.min.js"></script>
+    <script type="text/javascript" src="/static/js/highcharts.js"></script>
+    <script>
+        let year_chart = echarts.init(document.getElementById('year'));
+        let year_option = {
+            title: {
+                text: ''
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {
+                        name: "近20年漏洞增长趋势"
+                    }
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                name: "年份",
+                data: {{ year | safe }}
+            },
+            yAxis: {
+                type: 'value',
+                name: "数量"
+            },
+            series: [{
+                name: '漏洞数量',
+                type: 'line',
+                stack: 'Total',
+                data: {{ year_volume | safe }},
+                smooth: true
+            }]
+        };
+        if (year_option && typeof year_option === 'object') {
+            year_chart.setOption(year_option);
+        }
+        window.addEventListener('resize', year_chart.resize);
+
+        let volume_chart = echarts.init(document.getElementById('volume'));
+        let volume_option = {
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            legend: {},
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {
+                        name: "近1年漏洞增长详情"
+                    }
+                }
+            },
+            xAxis: {
+                type: 'value',
+                name: '数量'
+            },
+            yAxis: {
+                type: 'category',
+                name: '月份',
+                data: {{ date | safe }}
+            },
+            color: ['#aaaaaa', '#1890ff', '#facc14', '#f04864'],
+            series: [{
+                name: '未知',
+                type: 'bar',
+                stack: 'total',
+                label: {
+                    show: true
+                },
+                emphasis: {
+                    focus: 'series'
+                },
+                data: {{ unknown | safe }}
+            }, {
+                name: '低危',
+                type: 'bar',
+                stack: 'total',
+                label: {
+                    show: true
+                },
+                emphasis: {
+                    focus: 'series'
+                },
+                data: {{ low | safe }}
+            }, {
+                name: '中危',
+                type: 'bar',
+                stack: 'total',
+                label: {
+                    show: true
+                },
+                emphasis: {
+                    focus: 'series'
+                },
+                data: {{ middle | safe }}
+            }, {
+                name: '高危',
+                type: 'bar',
+                stack: 'total',
+                label: {
+                    show: true
+                },
+                emphasis: {
+                    focus: 'series'
+                },
+                data: {{ high | safe }}
+            }]
+        };
+        if (volume_option && typeof volume_option === 'object') {
+            volume_chart.setOption(volume_option);
+        }
+        window.addEventListener('resize', volume_chart.resize);
+
+        let distribution_chart = Highcharts.chart('distribution', {
+            chart: {
+                spacing : [40, 0 , 40, 0]
+            },
+            title: {
+                floating:true,
+                align: 'center',
+                x: 5,
+                y: 555,
+                {#text: '总数 ' + {{ count }},#}
+                text: '总数 ' + 9750756,
+                style: {
+                    color: '#000',
+                    fontsize: '20px',
+                    fontWeight: 'bold'
+                }
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            colors: ['#1890ff', '#facc14', '#f04864', '#aaaaaa'],
+            plotOptions: {
+                pie: {
+                    showInLegend: true,
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    },
+                    point: {
+                        events: {
+                            mouseOver: function(e) {  // 鼠标滑过时动态更新标题
+                                distribution_chart.setTitle({
+                                    text: e.target.name + " " + e.target.y,
+                                    style: {
+                                        color: e.target.color,
+                                        fontsize: '20px',
+                                        fontWeight: 'bold'
+                                    }
+                                });
+                            },
+                        }
+                    },
+                }
+            },
+            series: [{
+                type: 'pie',
+                innerSize: '80%',
+                name: '占比',
+                data: {{ distr | safe }}
+            }],
+            credits: {
+                enabled: false
+            }
+        }, function(c) { // 图表初始化完毕后的会掉函数
+            // 环形图圆心
+            let centerY = c.series[0].center[1],
+                titleHeight = parseInt(c.title.styles.fontSize);
+            // 动态设置标题位置
+            c.setTitle({
+                y:centerY + titleHeight/2
+            });
+        });
+
+        Highcharts.getOptions().colors = ['#1890ff', '#2fc25b', '#facc14', '#223273', '#8543e0', '#13c2c2', '#3436c7', '#f04864'];
+        let chart_type = Highcharts.chart('type', {
+            title: {
+                text: ''
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '占比',
+                data: [['操作系统', 67030], ['应用程序', 303469], ['WEB应用', 126222], ['数据库', 10848], ['网络设备', 36874], ['安全产品', 46654]]
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+    </script>
 {% endblock %}
 
 {% block name1 %}
