@@ -77,9 +77,10 @@ WSGI_APPLICATION = 'nipc.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'nipc',
+        # 'NAME': 'nipc',
+        'NAME': 'vuln',
         'USER': 'root',
-        'PASSWORD': '123456',
+        'PASSWORD': 'qi531433224',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
