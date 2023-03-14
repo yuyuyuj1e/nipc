@@ -1,19 +1,102 @@
 {% extends 'other_base.html' %}
 
-{% block nav %}
-{#    <li class="nav-item"><a href="/" class="nav-link">首页</a></li>#}
-{#    <li class="nav-item"><a href="/vulnerability" class="nav-link">漏洞列表</a></li>#}
-{#    <li class="nav-item"><a href="/report" class="nav-link">漏洞报告</a></li>#}
-{#    <li class="nav-item"><a href="/statistic" class="nav-link">数据统计</a></li>#}
-{#    <li class="nav-item active"><a href="/custom" class="nav-link">数据定制</a></li>#}
-{#    <li class="nav-item"><a href="/about" class="nav-link">关于我们</a></li>#}
-{#    <li class="nav-item cta"><a href="#" class="nav-link"><span>登录</span></a></li>#}
-{% endblock %}
-
 {% block name1 %}
-数据定制
+    数据定制
 {% endblock %}
 
 {% block name2 %}
-数据定制
+    数据定制
+{% endblock %}
+
+{% block other_content %}
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6">
+                <form method="post" id="customForm">
+                    {% csrf_token %}
+                    <div class="mt-lg-5"></div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-form-label">接收邮箱：</label>
+                        <input type="email" class="form-control" id="name" placeholder="请输入邮箱地址..."
+                               required="required">
+                        <span> {{ error }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-form-label">漏洞类型：</label>
+                        <div>
+                            <select id="inputState" class="form-control" name="vultype">
+                                <option selected value="所有">所有</option>
+                                <option value="认证错误">认证错误</option>
+                                <option value="缓冲区错误">缓冲区错误</option>
+                                <option value="证书管理错误">证书管理错误</option>
+                                <option value="许可，权限和访问控制错误">许可，权限和访问控制错误</option>
+                                <option value="跨站请求伪造">跨站请求伪造</option>
+                                <option value="跨站脚本">跨站脚本</option>
+                                <option value="目录遍历">目录遍历</option>
+                                <option value="SQL注入">SQL注入</option>
+                                <option value="输入验证错误">输入验证错误</option>
+                                <option value="加密错误">加密错误</option>
+                                <option value="代码注入">代码注入</option>
+                                <option value="格式字符串漏洞">格式字符串漏洞</option>
+                                <option value="配置错误">配置错误</option>
+                                <option value="信息泄露">信息泄露</option>
+                                <option value="数值错误">数值错误</option>
+                                <option value="操作系统命令注入">操作系统命令注入</option>
+                                <option value="竞争条件错误">竞争条件错误</option>
+                                <option value="资源管理错误">资源管理错误</option>
+                                <option value="链接跟随错误">链接跟随错误</option>
+                                <option value="设计错误">设计错误</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-form-label">严重程度：</label>
+                        <div>
+                            <select id="inputState" class="form-control" name="level">
+                                <option selected value="所有">所有</option>
+                                <option value="高危">高危</option>
+                                <option value="中危">中危</option>
+                                <option value="低危">低危</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-form-label">导出格式：</label>
+                        <div>
+                            <select id="inputState" class="form-control" name="export_type">
+                                <option selected value="json">json</option>
+                                <option value="xml">xml</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-form-label">报告类型：</label>
+                        <div>
+                            <select id="inputState" class="form-control" name="reporttype">
+                                <option selected value="month">月报</option>
+                                <option value="week">周报</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mt-5"></div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary" style="margin-right: 50px">提交</button>
+                        <button class="btn btn-outline-secondary" type="button" id="clearBtn">取消</button>
+                    </div>
+                    <div class="mb-lg-5"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script>
+    // 点击取消置空高级搜索框,同时置空两个全局变量
+        $("#clearBtn").click(function () {
+            $("#customForm")[0].reset();
+            DATETYPE = ''
+            LEVEL = ''
+        });
+    </script>
 {% endblock %}
