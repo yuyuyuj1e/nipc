@@ -1,4 +1,4 @@
-from django.db.models import Count
+from django.db.models import Count, Value
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.db.models.functions import TruncMonth, TruncYear
@@ -14,7 +14,29 @@ from home.utils.pagination import Pagination
 
 
 def home(request):
-    return render(request, 'home.html')
+    year_volume = Vul.objects.annotate(year=TruncYear('publishtime')).values('year').annotate(
+        c=Count('id')).order_by('-year')[:20:-1]
+    year_volume = [[i['year'].strftime('%y'), i['c']] for i in year_volume]
+    year = [[i[0]] for i in year_volume]
+
+    volume = Vul.objects.filter(publishtime__year__gte=2020, publishtime__month__gte=1).annotate(
+        month=TruncMonth('publishtime')).values('month').annotate(c=Count('id')).order_by('-month')
+    volume = [[i['month'].strftime('%y-%m'), i['c']] for i in volume]
+    volume.reverse()
+
+    distr = Vul.objects.values('level').annotate(c=Count('id'))
+    distr = {i['level']: i['c'] for i in distr}
+    count = sum(distr.values())
+    distr = [
+        ['低危', distr[1]],
+        ['中危', distr[2]],
+        ['高危', distr[3]],
+        ['未知', distr[0]]
+    ]
+    newest = Vul.objects.values_list('id', 'name', 'level', 'publishtime', 'clicknum').order_by('-publishtime')[:10]
+    newest = [{'id': i[0], 'name': i[1], 'visit': i[4], 'severity': i[2], 'publishtime': i[3].strftime(
+        '%Y-%m-%d')} for i in newest]
+    return render(request, 'home.html', context={'volume': volume, 'distr': distr, 'newest': newest, 'count': count})
 
 
 def about(request):
@@ -38,10 +60,10 @@ def statistic(request):
     # 漏洞数量
     volumes = (
         Vul.objects
-            .annotate(month=TruncMonth('publishtime'))
-            .values('month', 'level')
-            .annotate(c=Count('id'))
-            .order_by('-month')[:48:-1]
+        .annotate(month=TruncMonth('publishtime'))
+        .values('month', 'level')
+        .annotate(c=Count('id'))
+        .order_by('-month')[:48:-1]
     )
     volumes.reverse()
 
