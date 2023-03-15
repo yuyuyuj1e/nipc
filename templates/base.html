@@ -6,28 +6,23 @@
 
     <!-- base css -->
     <link rel="shortcut icon" href="/static/img/nipc_logo_trans.png"/>
-    <link rel="stylesheet" href="../static/plugins/icommon/style.css">
-    <link rel="stylesheet" href="/static/plugins/moban5914/static/css/animate.css">
-    <link rel="stylesheet" href="/static/plugins/moban5914/static/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="/static/plugins/moban5914/static/css/style.css">
+    <link rel="stylesheet" href="/static/plugins/icommon/style.css">
+    <link rel="stylesheet" href="/static/css/animate.css">
+    <link rel="stylesheet" href="/static/css/base_style.css">
     <link rel="stylesheet" href="/static/plugins/bootstrap-4.6.1-dist/css/bootstrap.min.css">
     <!-- End base css -->
-
     {% block css %}
     {% endblock %}
 </head>
 <body>
 <!-- nav -->
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light" id="ftco-navbar" style="position: absolute">
+<nav class="ftco-navbar-light nav navbar-expand-lg navbar-dark ftco_navbar" id="ftco-navbar">
     <div class="container">
         <a class="navbar-brand" href="">国家计算机网络入侵防范中心</a>
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                {#                    {% block nav %}#}
-                {#                    {% endblock %}#}
                 <li id="nav-home" class="nav-item"><a href="/" class="nav-link">首页</a></li>
                 <li id="nav-vulnerability" class="nav-item"><a href="/vulnerability/" class="nav-link">漏洞列表</a></li>
-                <li id="nav-report" class="nav-item"><a href="/report/" class="nav-link">漏洞报告</a></li>
                 <li id="nav-statistic" class="nav-item"><a href="/statistic/" class="nav-link">数据统计</a></li>
                 <li id="nav-custom" class="nav-item"><a href="/custom/" class="nav-link">数据定制</a></li>
                 <li id="nav-about" class="nav-item"><a href="/about/" class="nav-link">关于我们</a></li>
@@ -38,11 +33,8 @@
 </nav>
 <!-- END nav -->
 
-<div>
-    {% block content %}
-    {% endblock %}
-</div>
-
+{% block content %}
+{% endblock %}
 
 <!-- footer -->
 <footer class="ftco-footer ftco-bg-dark ftco-section">
@@ -140,39 +132,34 @@
 </div>
 
 
-<script src="/static/plugins/moban5914/static/js/jquery.min.js"></script>
-<script src="/static/plugins/moban5914/static/js/jquery-migrate-3.0.1.min.js"></script>
-<script src="/static/plugins/moban5914/static/js/jquery.waypoints.min.js"></script>
-<script src="/static/plugins/moban5914/static/js/jquery.stellar.min.js"></script>
-<script src="/static/plugins/moban5914/static/js/owl.carousel.min.js"></script>
-<script src="/static/plugins/moban5914/static/js/aos.js"></script>
-<script src="/static/plugins/moban5914/static/js/jquery.animateNumber.min.js"></script>
-<script src="/static/plugins/moban5914/static/js/scrollax.min.js"></script>
-<script src="/static/plugins/moban5914/static/js/main.js"></script>
 <script src="/static/plugins/jquery-3.6.1/jquery-3.6.1.min.js"></script>
 <script src="/static/plugins/bootstrap-4.6.1-dist/js/bootstrap.bundle.js"></script>
+
+<script src="/static/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="/static/js/jquery.waypoints.min.js"></script>
+<script src="/static/js/jquery.stellar.min.js"></script>
+<script src="/static/js/owl.carousel.min.js"></script>
+<script src="/static/js/aos.js"></script>
+<script src="/static/js/scrollax.min.js"></script>
+<script src="/static/js/jquery.animateNumber.min.js"></script>
+<script src="/static/js/main.js"></script>
+
 <script>
     // 让选中的项高亮
     function setActiveNavItem() {
-        // Get the current path
         var path = window.location.pathname;
 
-        // Remove the trailing slash (if present)
         if (path.endsWith('/')) {
             path = path.slice(0, -1);
         }
 
-        // Get the corresponding nav item based on the path
         var navItem = document.getElementById('nav-' + path.slice(1));
 
-        // Add the active class to the nav item
         navItem.classList.add('active');
     }
 
-    // Call the function when the page loads
     setActiveNavItem();
 
-    // Add an event listener to update the active nav item when a link is clicked
     var navLinks = document.querySelectorAll('.navbar-nav .nav-link');
     navLinks.forEach(function (link) {
         link.addEventListener('click', setActiveNavItem);
